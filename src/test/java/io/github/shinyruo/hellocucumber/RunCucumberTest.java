@@ -1,4 +1,4 @@
-package com.shinyruo.hellocucumber;
+package io.github.shinyruo.hellocucumber;
 
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;

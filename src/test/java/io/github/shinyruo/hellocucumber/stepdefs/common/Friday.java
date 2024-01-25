@@ -1,6 +1,7 @@
-package com.shinyruo.hellocucumber.stepdefs.common;
+package io.github.shinyruo.hellocucumber.stepdefs.common;
 
 import io.cucumber.java.en.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Friday {
