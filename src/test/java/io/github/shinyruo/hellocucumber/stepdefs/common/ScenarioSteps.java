@@ -1,9 +1,11 @@
 package io.github.shinyruo.hellocucumber.stepdefs.common;
 
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.shinyruo.hellocucumber.stepdefs.BaseStepDefinition;
 
-public class StepDefinitions {
-
+public class ScenarioSteps extends BaseStepDefinition {
     @Given("an example scenario")
     public void anExampleScenario() {
     }
@@ -15,5 +17,4 @@ public class StepDefinitions {
     @Then("the scenario passes")
     public void theScenarioPasses() {
     }
-
 }

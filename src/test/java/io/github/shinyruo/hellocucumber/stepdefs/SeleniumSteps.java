@@ -4,7 +4,11 @@ import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Selenium {
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+public class SeleniumSteps extends BaseStepDefinition {
+    private static final Logger LOGGER = LogManager.getLogger(SeleniumSteps.class);
     WebDriver driver;
 
     @When("a chromedriver is setup")
@@ -20,6 +24,6 @@ public class Selenium {
     @And("get title of the page")
     public void getTitleOfThePage() {
         String title = driver.getTitle();
-        System.out.println(title);
+        LOGGER.info("Title of the page is: " + title);
     }
 }

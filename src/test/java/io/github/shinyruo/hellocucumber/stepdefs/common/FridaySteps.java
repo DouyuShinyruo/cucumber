@@ -2,9 +2,14 @@ package io.github.shinyruo.hellocucumber.stepdefs.common;
 
 import io.cucumber.java.en.*;
 
+import io.github.shinyruo.hellocucumber.stepdefs.BaseStepDefinition;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Friday {
+public class FridaySteps extends BaseStepDefinition {
+    private static final Logger LOGGER = LogManager.getLogger(FridaySteps.class);
     private String today;
     private String actualAnswer;
 
@@ -12,9 +17,9 @@ public class Friday {
         return "Nope";
     }
 
-    @Given("today is Sunday")
-    public void today_is_Sunday() {
-        today = "Sunday";
+    @Given("today is {today}")
+    public void today_is_Sunday(String today) {
+        this.today = today;
     }
 
     @When("I ask whether it's Friday yet")
