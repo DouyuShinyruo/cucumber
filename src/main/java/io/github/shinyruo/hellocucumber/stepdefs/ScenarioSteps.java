@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.shinyruo.hellocucumber.stepdefs.BaseStepDefinition;
 
-public class ScenarioSteps extends BaseStepDefinition {
+public class ScenarioSteps implements BaseStepDefinition {
     @Given("an example scenario")
     public void anExampleScenario() {
     }
