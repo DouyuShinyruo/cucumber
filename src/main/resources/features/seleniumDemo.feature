@@ -1,6 +1,7 @@
-#Feature: An example for selenium
-#
-#  Scenario: The example for selenium
-#    When a chromedriver is setup
-#    Then guide to website "https://www.selenium.dev/selenium/web/web-form.html"
-#    And get title of the page
+Feature: An example for selenium
+
+  Scenario: The example for selenium
+    When MySeleniumAgent has setup a driver for chrome
+    Then MySeleniumAgent guide to website "$seleniumDemoUrl"
+    Then MySeleniumAgent get title of the page
+    Then MySeleniumAgent was quit

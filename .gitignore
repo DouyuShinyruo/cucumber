@@ -22,8 +22,8 @@ target/
 # Cucumber reports
 cucumber-reports/
 
-# Extent
-output/
+#TestNG
+test-output/
 
 # Temporary files
 *.tmp

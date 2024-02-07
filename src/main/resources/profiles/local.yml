@@ -1,0 +1,12 @@
+seleniumDemoUrl: https://www.selenium.dev/selenium/web/web-form.html
+Agents:
+  MySeleniumAgent:
+    class: io.github.shinyruo.hellocucumber.agent.SeleniumAgent
+  MyWebRequestAgent:
+    class: io.github.shinyruo.hellocucumber.agent.WebRequestAgent
+  MyRedisAgent:
+    class: io.github.shinyruo.hellocucumber.agent.RedisAgent
+    host: localhost
+    port: 6379
+    user: shinyruo
+    password: 123456

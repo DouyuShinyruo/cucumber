@@ -1,11 +1,14 @@
-package io.github.shinyruo.hellocucumber.stepdefs.common;
+package io.github.shinyruo.hellocucumber.stepdefs;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.shinyruo.hellocucumber.stepdefs.BaseStepDefinition;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class ScenarioSteps implements BaseStepDefinition {
+public class ScenarioSteps {
+    private static final Logger logger = LogManager.getLogger(ScenarioSteps.class);
+
     @Given("an example scenario")
     public void anExampleScenario() {
     }
@@ -17,4 +20,5 @@ public class ScenarioSteps implements BaseStepDefinition {
     @Then("the scenario passes")
     public void theScenarioPasses() {
     }
+
 }
