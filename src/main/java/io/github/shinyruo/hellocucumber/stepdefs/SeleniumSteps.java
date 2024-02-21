@@ -14,29 +14,29 @@ public class SeleniumSteps {
 
     @Given("{word} has setup a driver for {browser}")
     public void aBrowserDriverIsSetup(String agentName, WebDriver browserDriver) {
-        SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
+        final SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
         seleniumAgent.setupDriver(browserDriver);
         logger.info("Agent {} has setup a driver for {}", agentName, browserDriver);
     }
 
     @Then("{word} guide to website {string}")
     public void guideToWebsite(String agentName, String url) {
-        final String ProcessedUrl = ScenarioContext.getInstance().processString(url);
-        SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
-        seleniumAgent.getDriver().get(ProcessedUrl);
+        final String processedUrl = ScenarioContext.getInstance().processString(url);
+        final SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
+        seleniumAgent.getDriver().get(processedUrl);
         logger.info("Agent {} guide to website {}", agentName, url);
     }
 
     @Then("{word} get title of the page")
     public void getTitleOfThePage(String agentName) {
-        SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
+        final SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
         final String title = seleniumAgent.getDriver().getTitle();
         logger.info("Agent {} get title of the page: {}", agentName, title);
     }
 
     @Then("{word} was quit")
     public void quitDriver(String agentName) {
-        SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
+        final SeleniumAgent seleniumAgent = (SeleniumAgent) agentManagerInstance.getOrCreatAgent(agentName);
         seleniumAgent.quitDriver();
         logger.info("Agent {} was quit", agentName);
     }
