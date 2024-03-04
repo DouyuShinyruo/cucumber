@@ -1,7 +1,10 @@
 package io.github.shinyruo.hellocucumber.agent;
 
+import lombok.Getter;
+
 import java.util.Properties;
 
+@Getter
 public abstract class AbstractAgent implements Agent {
 
     private final String agentName;
@@ -12,13 +15,4 @@ public abstract class AbstractAgent implements Agent {
         this.properties = properties;
     }
 
-    @Override
-    public String getAgentName() {
-        return this.agentName;
-    }
-
-    @Override
-    public Properties getProperties() {
-        return this.properties;
-    }
 }

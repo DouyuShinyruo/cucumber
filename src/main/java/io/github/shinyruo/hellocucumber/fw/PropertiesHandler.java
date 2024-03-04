@@ -1,7 +1,8 @@
-package io.github.shinyruo.hellocucumber.common;
+package io.github.shinyruo.hellocucumber.fw;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.google.inject.Inject;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
 import org.yaml.snakeyaml.Yaml;
 
 import javax.annotation.Nullable;
@@ -12,37 +13,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class PropertiesHandler {
-    private static final Logger logger = LogManager.getLogger(PropertiesHandler.class);
+import jakarta.inject.Singleton;
 
+@Log4j2
+@Singleton
+public class PropertiesHandler {
     private static final String SYSPROP_PROFILE = "profile";
     private static final String PROFILE_LOCAL = "local";
     private static final String AGENTS = "Agents";
     private static final String CLASS = "class";
+    @Getter
     private final Properties properties = new Properties();
+    @Getter
     private final String profile;
     private final Map<String, Object> yamlMap;
 
+    @Inject
     private PropertiesHandler() {
         this.profile = System.getProperty(SYSPROP_PROFILE, PROFILE_LOCAL);
         this.yamlMap = yamlFileAsMap(ResourceFilesHandler.getProfilesFile(profile));
         this.properties.putAll(yamlFileToFlattenedMap(ResourceFilesHandler.getProfilesFile(profile)));
-    }
-
-    private static final class ProfilePropertiesHolder {
-        private static final PropertiesHandler instance = new PropertiesHandler();
-    }
-
-    public static PropertiesHandler getInstance() {
-        return ProfilePropertiesHolder.instance;
-    }
-
-    public Properties getProperties() {
-        return properties;
-    }
-
-    public String getProfile() {
-        return profile;
     }
 
     public String getAgentClassName(String agentName) {
@@ -66,7 +56,7 @@ public class PropertiesHandler {
         try {
             result = asMap(new Yaml().load(Files.newBufferedReader(path)));
         } catch (IOException e) {
-            logger.error("File not found as {}", yamlFile.getAbsolutePath(), e);
+            log.error("File not found as {}", yamlFile.getAbsolutePath(), e);
         }
         return result;
     }

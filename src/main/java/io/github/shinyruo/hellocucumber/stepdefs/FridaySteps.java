@@ -3,30 +3,25 @@ package io.github.shinyruo.hellocucumber.stepdefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import io.github.shinyruo.hellocucumber.stepdefs.common.BaseStepDefinition;
+import lombok.extern.log4j.Log4j2;
 
-public class FridaySteps {
-    private static final Logger logger = LogManager.getLogger(FridaySteps.class);
-    private String today;
-    private String actualAnswer;
+@Log4j2
+public class FridaySteps extends BaseStepDefinition {
 
-
-    @Given("today is {today}")
-    public void todayIsToday(String today) {
-        this.today = today;
+    @Given("today is {today} and stored as var {string}")
+    public void todayIsToday(String today, String date) {
+        scenarioContext.setContext(date, today);
     }
 
-    @When("I ask whether it's Friday yet")
-    public void iAskWhetherItsFridayYet() {
-        actualAnswer = isItFriday(today);
-    }
-
-    @Then("I should be told {string}")
-    public void iShouBeTold(String expectedAnswer) {
-        logger.info("Today is {}, expected answer: {}, actual answer: {}", today, expectedAnswer, actualAnswer);
-        if (!expectedAnswer.equals(actualAnswer)) {
-            logger.error("Expected answer: {}, actual answer: {}", expectedAnswer, actualAnswer);
+    @When("read from var {string} and should told me {string}")
+    public void iAskWhetherItsFridayYet(String key, String expectedAnswer) {
+        final String processedToday = scenarioContext.processString(key);
+        final String actualAnswer = isItFriday(processedToday);
+        if (actualAnswer.equals(expectedAnswer)) {
+            log.info("Today is {}, and it should be {}", processedToday, expectedAnswer);
+        } else {
+            log.error("Today is {}, but it should be {}", processedToday, expectedAnswer);
         }
     }
 

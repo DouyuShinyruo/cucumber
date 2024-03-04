@@ -1,26 +1,24 @@
-package io.github.shinyruo.hellocucumber.common;
+package io.github.shinyruo.hellocucumber.fw;
+
+import com.google.inject.Singleton;
+import com.google.inject.servlet.RequestScoped;
+import com.google.inject.servlet.SessionScoped;
+import jakarta.inject.Inject;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+@Singleton
 public class ScenarioContext {
 
     private final Map<String, Object> scenarioContextMap;
     private final Properties properties;
 
-    private static final ThreadLocal<ScenarioContext> instance = new ThreadLocal<>();
-
-    private ScenarioContext() {
+    @Inject
+    private ScenarioContext(PropertiesHandler propertiesHandler) {
         this.scenarioContextMap = new HashMap<>();
-        this.properties = PropertiesHandler.getInstance().getProperties();
-    }
-
-    public static ScenarioContext getInstance() {
-        if (instance.get() == null) {
-            instance.set(new ScenarioContext());
-        }
-        return instance.get();
+        this.properties = propertiesHandler.getProperties();
     }
 
     public String processString(String input) {
@@ -42,8 +40,6 @@ public class ScenarioContext {
     }
 
     public void cleanup() {
-        instance.remove();
+        scenarioContextMap.clear();
     }
-
-
 }

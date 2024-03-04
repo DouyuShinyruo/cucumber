@@ -3,6 +3,8 @@ package io.github.shinyruo.hellocucumber.agent;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Properties;
 
@@ -10,6 +12,9 @@ import static io.restassured.RestAssured.given;
 
 public class WebRequestAgent extends AbstractAgent {
     private RequestSpecification request;
+
+    @Setter
+    @Getter
     private Response response;
 
     public WebRequestAgent(String agentName, Properties properties) {
@@ -22,10 +27,6 @@ public class WebRequestAgent extends AbstractAgent {
         this.request = given().baseUri(baseUri);
     }
 
-    public Response getResponse() {
-        return this.response;
-    }
-
 
     public void setBody(String body) {
         this.request.body(body);
@@ -33,10 +34,6 @@ public class WebRequestAgent extends AbstractAgent {
 
     public void setHeader(String header, String value) {
         this.request.header(header, value);
-    }
-
-    public void setResponse(Response response) {
-        this.response = response;
     }
 
     public void makeRequest(Method method) {
