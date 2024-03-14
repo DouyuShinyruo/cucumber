@@ -36,7 +36,7 @@ public class WebRequestAgent extends AbstractAgent {
         this.request.header(header, value);
     }
 
-    public void makeRequest(Method method) {
+    public void sendRequest(Method method) {
         if (this.request == null) {
             throw new IllegalStateException("Request is not set");
         }

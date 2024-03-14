@@ -1,6 +1,7 @@
+seleniumDemoUrl: https://www.selenium.dev/selenium/web/web-form.html
 Agents:
   MySeleniumAgent:
-    class: io.github.shinyruo.hellocucumber.agent.SeleniumAgent
+    class: io.github.shinyruo.hellocucumber.agent.selenium.SeleniumAgent
   MyWebRequestAgent:
     class: io.github.shinyruo.hellocucumber.agent.WebRequestAgent
   MyRedisAgent:
@@ -9,3 +10,17 @@ Agents:
     port: 6379
     user: shinyruo
     password: 123456
+  MyKafkaAgentIn:
+    class: io.github.shinyruo.hellocucumber.agent.KafkaAgent
+    key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    value.serializer: org.apache.kafka.common.serialization.StringSerializer
+    bootstrap.servers: localhost:9092
+    topic: test.in
+    group.id: test
+  MyKafkaAgentOut:
+    class: io.github.shinyruo.hellocucumber.agent.KafkaAgent
+    key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    value.serializer: org.apache.kafka.common.serialization.StringSerializer
+    bootstrap.servers: localhost:9092
+    topic: test.out
+    group.id: test

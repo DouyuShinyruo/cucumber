@@ -24,6 +24,7 @@
         <lombok.version>1.18.30</lombok.version>
         <guice.version>7.0.0</guice.version>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
+        <kafka-clients.version>3.7.0</kafka-clients.version>
     </properties>
 
     <dependencyManagement>
@@ -120,6 +121,13 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-guice</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka-clients.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
