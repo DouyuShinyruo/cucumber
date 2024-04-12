@@ -14,17 +14,18 @@
         <maven-compiler.version>3.11.0</maven-compiler.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <cucumber.version>7.15.0</cucumber.version>
-        <tesng.version>7.9.0</tesng.version>
+        <tesng.version>7.10.1</tesng.version>
         <selenium.version>4.18.1</selenium.version>
-        <log4j.version>2.22.1</log4j.version>
+        <log4j.version>2.23.1</log4j.version>
         <restassured.version>5.4.0</restassured.version>
         <snakeyaml.version>2.2</snakeyaml.version>
-        <junit.version>5.10.1</junit.version>
+        <junit.version>5.10.2</junit.version>
         <jedis.version>5.1.1</jedis.version>
         <lombok.version>1.18.30</lombok.version>
         <guice.version>7.0.0</guice.version>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
         <kafka-clients.version>3.7.0</kafka-clients.version>
+        <appium.version>9.2.2</appium.version>
     </properties>
 
     <dependencyManagement>
@@ -126,6 +127,12 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>${kafka-clients.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
         </dependency>
 
     </dependencies>

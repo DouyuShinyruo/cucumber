@@ -25,4 +25,7 @@ public class SeleniumAgent extends AbstractAgent {
         this.driver.quit();
     }
 
+    public WebElement findElement(By by) {
+        return new DelegatingWebElement(driver.findElement(by));
+    }
 }

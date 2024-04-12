@@ -9,6 +9,8 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.time.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 @Log4j2
@@ -20,7 +22,7 @@ public class KafkaAgent extends AbstractAgent implements MessagingAgent {
     private final Properties consumerConfig;
     private final Consumer<String, String> consumer;
 
-    private final ConsumerRecords<String, String> consumerRecord;
+    private ConsumerRecords<String, String> consumerRecord;
 
     private final Long DEFAUTL_POLL_DURATION = 1000L;
 
@@ -31,7 +33,6 @@ public class KafkaAgent extends AbstractAgent implements MessagingAgent {
         this.producer = new KafkaProducer<>(producerConfig);
         this.consumerConfig = setUpConsumerConfig(properties);
         this.consumer = new KafkaConsumer<>(consumerConfig);
-        this.consumerRecord = consumer.poll(Duration.ofMillis(DEFAUTL_POLL_DURATION));
     }
 
     private Properties setUpProducerConfig(Properties properties) {
@@ -62,6 +63,18 @@ public class KafkaAgent extends AbstractAgent implements MessagingAgent {
 
     @Override
     public String receiveMessage() {
+        this.consumerRecord = consumer.poll(Duration.ofMillis(DEFAUTL_POLL_DURATION));
         return consumerRecord.iterator().next().value();
+    }
+
+    public void sendMessages(List<String> messages) {
+        messages.forEach(this::sendMessage);
+    }
+
+    public List<String> receiveMessages() {
+        this.consumerRecord = consumer.poll(Duration.ofMillis(DEFAUTL_POLL_DURATION));
+        List<ConsumerRecord<String, String>> recordsList = new ArrayList<>();
+        consumerRecord.records(topic).forEach(recordsList::add);
+        return recordsList.stream().map(ConsumerRecord::value).toList();
     }
 }
