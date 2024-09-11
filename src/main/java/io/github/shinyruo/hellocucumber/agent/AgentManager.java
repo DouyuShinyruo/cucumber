@@ -22,7 +22,7 @@ public class AgentManager {
         this.propertiesHandler = propertiesHandler;
     }
 
-    public Agent getOrCreatAgent(String agentName) {
+    public Agent getOrCreateAgent(String agentName) {
         return agentMap.computeIfAbsent(agentName, this::createAgentInstance);
     }
 

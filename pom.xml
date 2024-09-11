@@ -26,6 +26,7 @@
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
         <kafka-clients.version>3.7.0</kafka-clients.version>
         <appium.version>9.2.2</appium.version>
+        <k8sclient.version>6.13.3</k8sclient.version>
     </properties>
 
     <dependencyManagement>
@@ -133,6 +134,12 @@
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
             <version>${appium.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.fabric8</groupId>
+            <artifactId>kubernetes-client</artifactId>
+            <version>${k8sclient.version}</version>
         </dependency>
 
     </dependencies>
